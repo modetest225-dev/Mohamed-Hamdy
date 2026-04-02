@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mo Games</title>
+
+<style>
+
+:root{
+--bg:#0a0e27;
+--card:#1a1f3a;
+--primary:#00ff88;
+--secondary:#ff006e;
+--accent:#00d4ff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html, body{
+width:100%;
+height:100%;
+overflow-x:hidden;
+}
+
+body{
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background:linear-gradient(135deg, var(--bg) 0%, #1a0033 100%);
+color:#fff;
+padding:20px;
+text-align:center;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.header{
+background:linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--secondary) 100%);
+color:#000;
+padding:50px;
+border-radius:25px;
+margin-bottom:40px;
+box-shadow:0 0 50px rgba(0,255,136,0.5), 0 0 100px rgba(0,212,255,0.4);
+animation:slideDown 0.8s ease;
+position:relative;
+overflow:hidden;
+}
+
+.header::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15), transparent),
+            radial-gradient(circle at 80% 80%, rgba(255,255,255,0.15), transparent);
+}
+
+@keyframes slideDown{
+from{
+opacity:0;
+transform:translateY(-50px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.header h1{
+position:relative;
+z-index:1;
+margin:0;
+font-size:70px;
+font-weight:900;
+text-shadow:4px 4px 8px rgba(0,0,0,0.4);
+letter-spacing:3px;
+background:linear-gradient(45deg, #ff006e, #000, #00ff88);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+animation:glow 2s ease-in-out infinite;
+}
+
+@keyframes glow{
+0%, 100%{ filter:drop-shadow(0 0 10px rgba(255,0,110,0.6)); }
+50%{ filter:drop-shadow(0 0 20px rgba(0,255,136,0.8)); }
+}
+
+.header p{
+position:relative;
+z-index:1;
+margin:20px 0;
+font-size:22px;
+font-weight:700;
+color:#000;
+text-shadow:2px 2px 4px rgba(255,255,255,0.3);
+}
+
+.creator{
+position:relative;
+z-index:1;
+margin-top:20px;
+font-size:20px;
+font-weight:900;
+letter-spacing:2px;
+}
+
+.creator-name{
+color:#ff006e;
+text-decoration:none;
+cursor:pointer;
+transition:all 0.3s;
+border:3px solid #ff006e;
+padding:12px 25px;
+border-radius:12px;
+display:inline-block;
+background:rgba(255,0,110,0.1);
+text-shadow:2px 2px 4px rgba(0,0,0,0.5);
+animation:pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse{
+0%, 100%{ transform:scale(1); box-shadow:0 0 20px rgba(255,0,110,0.5); }
+50%{ transform:scale(1.05); box-shadow:0 0 40px rgba(255,0,110,0.8); }
+}
+
+.creator-name:hover{
+background:rgba(255,0,110,0.3);
+transform:scale(1.1);
+}
+
+.games-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill, minmax(350px, 1fr));
+gap:35px;
+margin-bottom:50px;
+}
+
+.game-card{
+background:var(--card);
+padding:0;
+border-radius:20px;
+box-shadow:0 15px 50px rgba(0,0,0,0.7);
+border:3px solid var(--primary);
+text-align:right;
+transition:all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+animation:fadeIn 0.6s ease;
+overflow:hidden;
+position:relative;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(40px) scale(0.9);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+.game-card::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:5px;
+background:linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+z-index:10;
+}
+
+.game-card:hover{
+transform:translateY(-20px) scale(1.02);
+box-shadow:0 25px 80px rgba(0,255,136,0.5), 0 0 40px rgba(0,212,255,0.4);
+border-color:var(--secondary);
+}
+
+.game-card-content{
+padding:30px;
+}
+
+.game-title{
+margin:0 0 25px 0;
+font-size:28px;
+color:var(--primary);
+font-weight:800;
+word-break:break-word;
+text-shadow:2px 2px 4px rgba(0,0,0,0.5);
+letter-spacing:1px;
+}
+
+.buttons-row{
+display:flex;
+gap:12px;
+margin-bottom:20px;
+}
+
+.play-btn{
+background:linear-gradient(135deg, var(--primary), var(--accent));
+color:#000;
+flex:1;
+font-size:16px;
+padding:14px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+transition:all 0.3s;
+text-shadow:1px 1px 2px rgba(255,255,255,0.3);
+}
+
+.play-btn:hover{
+transform:scale(1.08);
+box-shadow:0 10px 30px rgba(0,255,136,0.5);
+}
+
+.fullscreen-btn{
+background:linear-gradient(135deg, var(--secondary), #ff4081);
+color:white;
+padding:14px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+font-size:16px;
+transition:all 0.3s;
+min-width:50px;
+}
+
+.fullscreen-btn:hover{
+transform:scale(1.08);
+box-shadow:0 10px 30px rgba(255,0,110,0.5);
+}
+
+.iframe-wrapper{
+width:100%;
+height:0;
+overflow:hidden;
+position:relative;
+padding-bottom:100%;
+margin:15px 0;
+border-radius:15px;
+background:#000;
+border:2px solid var(--accent);
+}
+
+.iframe-wrapper.active{
+height:500px;
+padding-bottom:0;
+}
+
+.iframe-wrapper iframe{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+border:none;
+border-radius:13px;
+}
+
+.fullscreen-container{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:10000;
+background:#000;
+display:none;
+}
+
+.fullscreen-container.active{
+display:flex;
+flex-direction:column;
+}
+
+.fullscreen-header{
+background:linear-gradient(135deg, var(--primary), var(--secondary));
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.fullscreen-header h2{
+color:#000;
+font-size:28px;
+font-weight:900;
+margin:0;
+text-shadow:2px 2px 4px rgba(255,255,255,0.3);
+}
+
+.close-fullscreen-btn{
+background:#ff006e;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+font-size:20px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.close-fullscreen-btn:hover{
+background:#ff4081;
+transform:scale(1.1);
+}
+
+.fullscreen-content{
+flex:1;
+overflow:hidden;
+}
+
+.fullscreen-content iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+.rating-container{
+margin:20px 0;
+font-size:36px;
+letter-spacing:10px;
+}
+
+.star{
+cursor:pointer;
+color:#444;
+transition:all 0.2s;
+filter:drop-shadow(0 0 2px rgba(0,0,0,0.5));
+}
+
+.star:hover{
+transform:scale(1.4) rotate(20deg);
+}
+
+.star.active{
+color:var(--accent);
+text-shadow:0 0 20px var(--accent);
+}
+
+.action-buttons{
+display:flex;
+gap:12px;
+margin:20px 0;
+flex-wrap:wrap;
+}
+
+.like-btn{
+background:linear-gradient(135deg, var(--secondary), #ff4081);
+color:white;
+flex:1;
+min-width:140px;
+padding:14px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+font-size:16px;
+transition:all 0.3s;
+text-shadow:1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.like-btn:hover:not(:disabled){
+transform:scale(1.08);
+box-shadow:0 8px 25px rgba(255,0,110,0.5);
+}
+
+.like-btn:disabled{
+opacity:0.4;
+cursor:not-allowed;
+}
+
+.like-count{
+color:var(--secondary);
+font-weight:bold;
+font-size:20px;
+padding:12px;
+background:rgba(255,0,110,0.1);
+border-radius:10px;
+margin:12px 0;
+border-left:4px solid var(--secondary);
+}
+
+.comment-box{
+width:100%;
+padding:14px;
+margin-top:18px;
+border:2px solid var(--primary);
+border-radius:10px;
+background:rgba(0,255,136,0.05);
+color:white;
+font-size:14px;
+transition:all 0.3s;
+font-family:inherit;
+}
+
+.comment-box:focus{
+outline:none;
+border-color:var(--secondary);
+box-shadow:0 0 20px rgba(0,212,255,0.6);
+background:rgba(0,255,136,0.1);
+}
+
+.comments{
+background:rgba(0,0,0,0.4);
+padding:18px;
+margin-top:18px;
+border-radius:10px;
+max-height:180px;
+overflow-y:auto;
+font-size:14px;
+border-left:4px solid var(--primary);
+text-align:right;
+}
+
+.comments div{
+margin:10px 0;
+padding:12px;
+background:rgba(0,255,136,0.08);
+border-radius:8px;
+color:var(--accent);
+border-right:3px solid var(--primary);
+}
+
+.credit{
+margin-top:18px;
+padding-top:18px;
+border-top:2px solid var(--primary);
+font-size:14px;
+opacity:0.85;
+}
+
+.credit a{
+color:var(--accent);
+cursor:pointer;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+border-bottom:2px solid transparent;
+}
+
+.credit a:hover{
+border-bottom:2px solid var(--accent);
+color:var(--secondary);
+}
+
+.dev-menu{
+display:none;
+background:linear-gradient(135deg, rgba(0,255,136,0.08), rgba(255,0,110,0.08));
+color:white;
+padding:40px;
+margin-top:50px;
+border-radius:25px;
+border:3px solid var(--primary);
+box-shadow:0 0 50px rgba(0,255,136,0.25);
+animation:slideUp 0.5s ease;
+}
+
+@keyframes slideUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.dev-menu h3{
+color:var(--primary);
+margin-bottom:30px;
+font-size:32px;
+text-transform:uppercase;
+letter-spacing:3px;
+text-shadow:2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.dev-menu input,
+.dev-menu select{
+width:100%;
+padding:15px;
+margin:15px 0;
+border:2px solid var(--primary);
+border-radius:12px;
+box-sizing:border-box;
+background:rgba(10,14,39,0.9);
+color:white;
+font-size:15px;
+transition:all 0.3s;
+}
+
+.dev-menu input::placeholder{
+color:rgba(255,255,255,0.6);
+}
+
+.dev-menu input:focus,
+.dev-menu select:focus{
+outline:none;
+border-color:var(--secondary);
+box-shadow:0 0 25px rgba(255,0,110,0.6);
+background:rgba(10,14,39,0.95);
+}
+
+.color-grid{
+display:grid;
+grid-template-columns:repeat(4, 1fr);
+gap:18px;
+margin:25px 0;
+}
+
+.color-option{
+width:100%;
+height:75px;
+border-radius:15px;
+cursor:pointer;
+border:3px solid transparent;
+transition:all 0.3s;
+box-shadow:0 8px 25px rgba(0,0,0,0.5);
+}
+
+.color-option:hover{
+transform:scale(1.15);
+border-color:#fff;
+box-shadow:0 12px 40px rgba(0,0,0,0.7);
+}
+
+.dev-btn-group{
+display:flex;
+gap:18px;
+margin:30px 0;
+flex-wrap:wrap;
+}
+
+.dev-btn-group button{
+flex:1;
+min-width:200px;
+padding:18px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+font-weight:bold;
+font-size:17px;
+transition:all 0.3s;
+text-transform:uppercase;
+letter-spacing:2px;
+text-shadow:1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.dev-btn-group button:hover{
+transform:translateY(-5px);
+box-shadow:0 12px 30px rgba(0,0,0,0.5);
+}
+
+.footer{
+margin-top:80px;
+padding:40px;
+background:linear-gradient(135deg, rgba(0,255,136,0.12), rgba(255,0,110,0.12));
+border-radius:25px;
+color:#fff;
+font-size:20px;
+border:3px solid var(--primary);
+box-shadow:0 0 50px rgba(0,255,136,0.25);
+font-weight:700;
+letter-spacing:2px;
+}
+
+.footer a{
+color:var(--accent);
+text-decoration:none;
+cursor:pointer;
+font-weight:900;
+transition:0.3s;
+border-bottom:3px solid transparent;
+}
+
+.footer a:hover{
+border-bottom:3px solid var(--accent);
+color:var(--secondary);
+}
+
+.delete-section{
+margin:30px 0;
+padding:30px;
+background:rgba(255,0,110,0.08);
+border-radius:18px;
+border:3px dashed var(--secondary);
+}
+
+.delete-section h4{
+color:var(--secondary);
+margin-bottom:20px;
+font-size:24px;
+text-shadow:2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.games-select{
+width:100%;
+padding:15px;
+margin:15px 0;
+border:2px solid var(--secondary);
+border-radius:12px;
+background:rgba(10,14,39,0.9);
+color:white;
+font-size:15px;
+}
+
+.games-select:focus{
+outline:none;
+border-color:var(--accent);
+box-shadow:0 0 25px rgba(255,0,110,0.6);
+}
+
+hr{
+border:none;
+height:3px;
+background:linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+opacity:0.4;
+margin:40px 0;
+}
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-track{
+background:rgba(0,0,0,0.3);
+border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb{
+background:var(--primary);
+border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background:var(--secondary);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>🎮 MO GAMES 🎮</h1>
+<p>
+⭐ عدد الزوار الآن: <span id="visitors" style="color:#ff006e;font-size:28px;font-weight:900;">15,200</span> ⭐
+</p>
+<div class="creator">
+Created By <span class="creator-name" onclick="window.open('https://www.facebook.com/horrordeath2', '_blank')">✨ MOHAMED HAMDY ✨</span>
+</div>
+</div>
+
+<div class="games-grid" id="games"></div>
+
+<button class="like-btn" style="margin:40px auto;display:block;width:280px;background:linear-gradient(135deg, #333, #555);font-size:18px;" onclick="openDev()">
+⚙️ خيارات المطور
+</button>
+
+<div class="dev-menu" id="dev">
+
+<h3>🔐 لوحة المطور</h3>
+
+<input type="text" id="gameName" placeholder="📝 اسم اللعبة أو الفيديو">
+<input type="text" id="gameUrl" placeholder="🔗 رابط اللعبة أو الفيديو">
+
+<div class="dev-btn-group">
+<button style="background:linear-gradient(135deg, #00ff88, #00d4ff);" onclick="addGameFromInput()">
+➕ إضافة لعبة جديدة
+</button>
+</div>
+
+<div class="delete-section">
+<h4>🗑️ حذف لعبة</h4>
+<select class="games-select" id="gameSelect">
+<option value="">-- اختر لعبة للحذف --</option>
+</select>
+<button style="background:linear-gradient(135deg, #ff006e, #ff4081);width:100%;margin-top:15px;padding:15px;border:none;border-radius:12px;color:white;font-weight:bold;font-size:16px;cursor:pointer;text-transform:uppercase;letter-spacing:2px;" onclick="deleteSelectedGame()">
+🗑️ حذف اللعبة المختارة
+</button>
+</div>
+
+<hr>
+
+<h3>🎨 تخصيص الألوان</h3>
+
+<label style="color:var(--primary);font-weight:bold;display:block;margin-top:25px;margin-bottom:18px;font-size:20px;text-shadow:2px 2px 4px rgba(0,0,0,0.5);">اختر اللون الأساسي:</label>
+<div class="color-grid" id="primaryColors"></div>
+
+<label style="color:var(--primary);font-weight:bold;display:block;margin-top:25px;margin-bottom:18px;font-size:20px;text-shadow:2px 2px 4px rgba(0,0,0,0.5);">اختر اللون الثانوي:</label>
+<div class="color-grid" id="secondaryColors"></div>
+
+<label style="color:var(--primary);font-weight:bold;display:block;margin-top:25px;margin-bottom:18px;font-size:20px;text-shadow:2px 2px 4px rgba(0,0,0,0.5);">اختر لون التمييز:</label>
+<div class="color-grid" id="accentColors"></div>
+
+<button style="background:linear-gradient(135deg, #17a2b8, #20c997);color:white;width:100%;margin-top:25px;padding:18px;border:none;border-radius:14px;font-weight:bold;font-size:17px;cursor:pointer;text-transform:uppercase;letter-spacing:2px;" onclick="resetColors()">
+↩️ إعادة تعيين الألوان
+</button>
+
+</div>
+
+<div class="fullscreen-container" id="fullscreenContainer">
+<div class="fullscreen-header">
+<h2 id="fullscreenTitle">اللعبة</h2>
+<button class="close-fullscreen-btn" onclick="closeFullscreen()">✕</button>
+</div>
+<div class="fullscreen-content" id="fullscreenContent"></div>
+</div>
+
+<div class="footer">
+🎮 Created By <span class="creator-name" onclick="window.open('https://www.facebook.com/horrordeath2', '_blank')" style="border:2px solid var(--accent);background:rgba(0,212,255,0.1);">✨ MOHAMED HAMDY ✨</span> © 2026 🎮
+</div>
+
+</div>
+
+<script>
+
+const colorPalettes = {
+primary: [
+"#00ff88", "#ff006e", "#ffd700", "#00ffff", 
+"#ff6b00", "#b537f2", "#ff4081", "#00ff00"
+],
+secondary: [
+"#764ba2", "#667eea", "#f093fb", "#4facfe",
+"#43e97b", "#fa709a", "#30cfd0", "#a8edea"
+],
+accent: [
+"#00d4ff", "#ff6b6b", "#4ecdc4", "#95e1d3",
+"#f38181", "#ffd93d", "#6bcf7f", "#ff6b9d"
+]
+}
+
+let games = JSON.parse(localStorage.getItem("mo_games")) || [
+{name:"🎮 Catch The Num", url:"https://modetest225-dev.github.io/Catch-The-Num/index.html", likes:120, rating:0, comments:[], liked:false},
+{name:"🎯 Catch The Number P2", url:"https://modetest225-dev.github.io/Catch-The-Number-P2-/index.html", likes:85, rating:0, comments:[], liked:false},
+{name:"🐦 Flappy Bird", url:"https://flappybird.io/", likes:200, rating:0, comments:[], liked:false},
+{name:"🧱 Tetris", url:"https://tetris.com/play-tetris", likes:250, rating:0, comments:[], liked:false},
+{name:"🃏 Card Solitaire", url:"https://solitaire.org/", likes:140, rating:0, comments:[], liked:false},
+{name:"🕹️ 2048 Game", url:"https://gabrielecirulli.github.io/2048/", likes:150, rating:0, comments:[], liked:false},
+{name:"🐍 Snake Game", url:"https://playsnakegame.io/", likes:180, rating:0, comments:[], liked:false},
+{name:"🎲 Dice Game", url:"https://dice.party/", likes:100, rating:0, comments:[], liked:false},
+{name:"🧩 Puzzle Game", url:"https://www.puzzlegames.com/", likes:160, rating:0, comments:[], liked:false},
+{name:"👾 Space Shooter", url:"https://classicgames.org/space-invaders/", likes:170, rating:0, comments:[], liked:false},
+{name:"🏃 Runner Game", url:"https://chromedino.com/", likes:195, rating:0, comments:[], liked:false},
+{name:"🎪 Circus Game", url:"https://circesgames.com/", likes:145, rating:0, comments:[], liked:false},
+{name:"🎨 Drawing Game", url:"https://quickdraw.withgoogle.com/", likes:165, rating:0, comments:[], liked:false},
+{name:"🌍 Geography Quiz", url:"https://www.geoguessr.com/", likes:175, rating:0, comments:[], liked:false},
+{name:"📚 Trivia Game", url:"https://www.sporcle.com/", likes:155, rating:0, comments:[], liked:false},
+{name:"🎸 Music Game", url:"https://incredibox.com/", likes:185, rating:0, comments:[], liked:false},
+{name:"🚗 Race Game", url:"https://slither.io/", likes:200, rating:0, comments:[], liked:false},
+{name:"⚡ Action Game", url:"https://diep.io/", likes:190, rating:0, comments:[], liked:false},
+{name:"🏆 Arcade Games", url:"https://www.newgrounds.com/games/", likes:160, rating:0, comments:[], liked:false},
+{name:"🎰 Slot Game", url:"https://slotsofvegas.com/", likes:125, rating:0, comments:[], liked:false},
+{name:"🎪 Platform Game", url:"https://www.cool-math-games.com/", likes:150, rating:0, comments:[], liked:false},
+{name:"⚽ Football Game", url:"https://www.playbig.games/", likes:180, rating:0, comments:[], liked:false},
+{name:"🏀 Basketball Game", url:"https://basketballlegends.io/", likes:170, rating:0, comments:[], liked:false},
+{name:"🎯 Target Game", url:"https://papersio.io/", likes:165, rating:0, comments:[], liked:false},
+{name:"🌟 Star Game", url:"https://www.y8.com/", likes:155, rating:0, comments:[], liked:false},
+{name:"💣 Bomb Game", url:"https://www.minesweeper.com/", likes:140, rating:0, comments:[], liked:false},
+{name:"🎊 Party Game", url:"https://jackbox.tv/", likes:190, rating:0, comments:[], liked:false},
+{name:"🔥 Fire Game", url:"https://www.breakingbadgames.com/", likes:175, rating:0, comments:[], liked:false},
+{name:"❄️ Ice Game", url:"https://frozengames.net/", likes:145, rating:0, comments:[], liked:false},
+{name:"🌊 Water Game", url:"https://www.watergames.org/", likes:160, rating:0, comments:[], liked:false},
+{name:"⛰️ Mountain Game", url:"https://mountaineering.games/", likes:135, rating:0, comments:[], liked:false}
+]
+
+function initColorPickers(){
+let primaryDiv = document.getElementById("primaryColors")
+colorPalettes.primary.forEach(color => {
+let div = document.createElement("div")
+div.className = "color-option"
+div.style.backgroundColor = color
+div.onclick = () => setColor("primary", color)
+primaryDiv.appendChild(div)
+})
+
+let secondaryDiv = document.getElementById("secondaryColors")
+colorPalettes.secondary.forEach(color => {
+let div = document.createElement("div")
+div.className = "color-option"
+div.style.backgroundColor = color
+div.onclick = () => setColor("secondary", color)
+secondaryDiv.appendChild(div)
+})
+
+let accentDiv = document.getElementById("accentColors")
+colorPalettes.accent.forEach(color => {
+let div = document.createElement("div")
+div.className = "color-option"
+div.style.backgroundColor = color
+div.onclick = () => setColor("accent", color)
+accentDiv.appendChild(div)
+})
+}
+
+function setColor(type, color){
+document.documentElement.style.setProperty(`--${type}`, color)
+localStorage.setItem(`mo_${type}_color`, color)
+}
+
+function resetColors(){
+document.documentElement.style.setProperty("--primary", "#00ff88")
+document.documentElement.style.setProperty("--secondary", "#ff006e")
+document.documentElement.style.setProperty("--accent", "#00d4ff")
+localStorage.removeItem("mo_primary_color")
+localStorage.removeItem("mo_secondary_color")
+localStorage.removeItem("mo_accent_color")
+alert("تم إعادة تعيين الألوان ✅")
+}
+
+function loadSavedColors(){
+let primary = localStorage.getItem("mo_primary_color")
+let secondary = localStorage.getItem("mo_secondary_color")
+let accent = localStorage.getItem("mo_accent_color")
+
+if(primary) document.documentElement.style.setProperty("--primary", primary)
+if(secondary) document.documentElement.style.setProperty("--secondary", secondary)
+if(accent) document.documentElement.style.setProperty("--accent", accent)
+}
+
+function updateGameSelect(){
+let select = document.getElementById("gameSelect")
+select.innerHTML = '<option value="">-- اختر لعبة للحذف --</option>'
+games.forEach((g, i) => {
+let option = document.createElement("option")
+option.value = i
+option.textContent = g.name
+select.appendChild(option)
+})
+}
+
+function openFullscreen(i, name){
+let container = document.getElementById("fullscreenContainer")
+let content = document.getElementById("fullscreenContent")
+let title = document.getElementById("fullscreenTitle")
+
+title.textContent = name
+content.innerHTML = `<iframe src="${games[i].url}"></iframe>`
+container.classList.add("active")
+document.body.style.overflow = "hidden"
+}
+
+function closeFullscreen(){
+let container = document.getElementById("fullscreenContainer")
+container.classList.remove("active")
+document.body.style.overflow = "auto"
+}
+
+function render(){
+let container=document.getElementById("games")
+container.innerHTML=""
+
+games.forEach((g,i)=>{
+let stars=""
+for(let s=1;s<=5;s++){
+stars+=`<span class="star ${g.rating>=s?'active':''}" onclick="rate(${i},${s})">★</span>`
+}
+
+let likeButtonState = g.liked ? 'disabled' : ''
+
+container.innerHTML+=`
+<div class="game-card">
+<div class="game-card-content">
+
+<h3 class="game-title">${g.name}</h3>
+
+<div class="buttons-row">
+<button class="play-btn" onclick="play(${i})">▶️ تشغيل</button>
+<button class="fullscreen-btn" onclick="openFullscreen(${i}, '${g.name}')">📺</button>
+</div>
+
+<div class="iframe-wrapper" id="iframe-container${i}">
+<iframe id="frame${i}" src="${g.url}"></iframe>
+</div>
+
+<div class="rating-container">${stars}</div>
+
+<div class="action-buttons">
+<button class="like-btn" ${likeButtonState} onclick="like(${i})">❤️ إعجاب</button>
+</div>
+
+<div class="like-count">👍 ${g.likes}</div>
+
+<input class="comment-box"
+placeholder="اكتب تعليق واضغط Enter"
+onkeypress="comment(event,${i},this)">
+
+<div class="comments">
+${g.comments.length > 0 ? g.comments.map(c=>`<div>💬 ${c}</div>`).join("") : '<div style="color:#999;font-size:13px;">لا توجد تعليقات حتى الآن</div>'}
+</div>
+
+<div class="credit">
+Created By <a onclick="window.open('https://www.facebook.com/horrordeath2', '_blank')">Mohamed Hamdy</a> 💚
+</div>
+
+</div>
+</div>
+`
+})
+
+updateGameSelect()
+localStorage.setItem("mo_games",JSON.stringify(games))
+}
+
+function play(i){
+let container=document.getElementById("iframe-container"+i)
+container.classList.toggle("active")
+}
+
+function like(i){
+if(!games[i].liked){
+games[i].likes++
+games[i].liked = true
+render()
+}
+}
+
+function rate(i,v){
+games[i].rating=v
+render()
+}
+
+function comment(e,i,input){
+if(e.key==="Enter" && input.value!=""){
+games[i].comments.push(input.value)
+input.value=""
+render()
+}
+}
+
+function openDev(){
+let password = prompt("أدخل كلمة السر:")
+if(password === "m7u08649"){
+document.getElementById("dev").style.display=document.getElementById("dev").style.display==="block"?"none":"block"
+}else if(password !== null){
+alert("كلمة السر خاطئة! ❌")
+}
+}
+
+function addGameFromInput(){
+let name=document.getElementById("gameName").value
+let url=document.getElementById("gameUrl").value
+
+if(name && url){
+games.push({
+name:name,
+url:url,
+likes:0,
+rating:0,
+comments:[],
+liked:false
+})
+
+document.getElementById("gameName").value=""
+document.getElementById("gameUrl").value=""
+
+render()
+alert("تمت إضافة اللعبة بنجاح! ✅")
+}else{
+alert("الرجاء ملء جميع الحقول! ⚠️")
+}
+}
+
+function deleteSelectedGame(){
+let select = document.getElementById("gameSelect")
+let index = select.value
+
+if(index !== ""){
+let gameName = games[index].name
+if(confirm(`هل تريد حذف ${gameName}؟`)){
+games.splice(index, 1)
+render()
+alert("تم حذف اللعبة ✅")
+select.value = ""
+}
+}else{
+alert("الرجاء اختيار لعبة للحذف! ⚠️")
+}
+}
+
+setInterval(()=>{
+let v=document.getElementById("visitors")
+let num=parseInt(v.innerText.replace(",",""))
+num+=Math.floor(Math.random()*400)-200
+if(num<1000)num=1000
+v.innerText=num.toLocaleString()
+},2000)
+
+document.addEventListener("keydown", (e) => {
+if(e.key === "Escape"){
+closeFullscreen()
+}
+})
+
+loadSavedColors()
+initColorPickers()
+render()
+
+</script>
+
+</body>
+</html>
+الموقع خاضع للصيانة🛠⚙️
